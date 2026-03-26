@@ -1,38 +1,36 @@
 pipeline {
-    agent any
-    stages {
-        stage('Checkout') {
-             steps {
-                 git branch: 'main', url: 'https://github.com/canhhuynh220805/jenkins_demo.git'
-             }
+    agent {
+        docker {
+            image 'node:18'
         }
+    }
+
+    stages {
         stage('Install') {
             steps {
                 sh 'npm install'
             }
         }
+
         stage('Build') {
             steps {
                 sh 'npm run build'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'npm test'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying application..."'
-            }
-        }
     }
-    post{
+
+    post {
         success {
             echo "Pipeline completed successfully!"
         }
         failure {
-            echo "Pipeline failed. Please check the logs for details."
+            echo "Pipeline failed!"
         }
     }
 }
