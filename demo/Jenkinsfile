@@ -5,6 +5,11 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+             steps {
+                 git 'https://github.com/canhhuynh220805/jenkins_demo'
+             }
+        }
         stage('Install') {
             steps {
                 sh 'npm install'
