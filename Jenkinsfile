@@ -27,7 +27,7 @@ pipeline {
             }
         }
     }
-    port{
+    post{
         success {
             echo "Pipeline completed successfully!"
         }
