@@ -34,7 +34,9 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'dist/**/*', fingerprint: true, allowEmptyArchive: false
+            dir('jenskin_app/my-react-app') {
+                 archiveArtifacts artifacts: 'dist/**/*', fingerprint: true, allowEmptyArchive: false
+            }
         }
         failure {
             echo "Pipeline failed!"
